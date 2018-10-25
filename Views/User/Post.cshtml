@@ -1,0 +1,15 @@
+@model TheWall.Models.Message
+<form class="form-group d-flex justify-content-center mx-auto" asp-action="CreateMsg" asp-controller="Admin" asp-route-recipientId="@ViewBag.SelectedUser.UserId" method="post">
+    <div class="container row">
+        <div class="container col-10">
+            <span class="text-danger mt-3" asp-validation-for="Msg"></span>
+            <textarea type="text" class="form-control" asp-for="Msg" placeholder="What's on your mind..."></textarea>
+            <input type="hidden" asp-for="UserId" value="@ViewBag.UserId">
+            <input type="hidden" asp-for="RecipientId" value="@ViewBag.SelectedUser.UserId">
+        </div>
+        <div class="col-2 d-flex align-items-center">
+            <button type="submit" class="btn btn-info">Post</button>
+        </div>
+    </div>
+</form>
+

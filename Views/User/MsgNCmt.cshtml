@@ -5,39 +5,62 @@
         @foreach(var msg in @ViewBag.AllMsg)
         {
             <div class="container mt-5">
-                <div class="container row mt-5 pr-5">
-                    <p class="d-inline"><a href="#">@msg.User.FirstName @msg.User.LastName</a>  
-                        <p class="d-inline ml-auto">
-                            @if (@msg.TimeSpan == null) 
-                            {
-                                @msg.CreatedAt.ToString("d")
-                            } else 
-                            {
-                                @msg.TimeSpan 
-                            }
-                        </p>
-                    </p>
-                </div>
-        
+                <!-- MSG Box -->
+                <div class="container row mx-auto">
+                    <div class="thumbnail">
+                        <img class="img-responsive border rounded" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="55" width="55">
+                    </div>
+                    <div class="panel panel-default ml-5">
+                        <div class="panel-heading">
+                            <strong><a class="text-secondary" href="#">@msg.User.FirstName @msg.User.LastName</a></strong> 
+                            <span class="text-muted"> 
+                                left a message
+                                @if (@msg.TimeSpan == null) 
+                                {
+                                    @msg.CreatedAt.ToString("d")
+                                } else 
+                                {
+                                    @msg.TimeSpan 
+                                }
+                            </span>
+                        </div> <!-- End Panel-Heading -->
+                        <div class="panel-body">
+                            @msg.Msg
+                        </div> <!-- End Panel-Body -->
+                    </div> <!-- End Panel -->
+                </div> <!-- End MSG Box -->
+                <hr>
+                <!-- Render Comments -->
                 <div class="container row">
-                    <div class="container row mt-2">
-                        <!-- Render comments -->
-                        <textarea class="form-control">@msg.Msg</textarea>
+                    <div class="container ml-5">
                         @foreach(var cmt in msg.Comments)
                         {
-                            <div class="container row mt-3">
-                                <p class="d-inline"><a href="#">@cmt.User.FirstName @cmt.User.LastName</a> 
-                                    <p class="d-inline ml-auto">
-                                        @if (@cmt.TimeSpan == null) 
-                                        {
-                                            @cmt.CreatedAt.ToString("d")
-                                        } else 
-                                        {
-                                            @cmt.TimeSpan 
-                                        }
-                                    </p>
-                                </p>
-                                <div readonly class="container border rounded p-3">@cmt.Cmt</div>
+                            <div class="container mt-3">
+                                <!-- CMT Box -->
+                                <div class="container row mx-auto">
+                                    <div class="thumbnail col-1">
+                                        <img class="img-responsive border rounded" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="55" width="55">
+                                    </div>
+                                    <div class="panel panel-default ml-5 col-10">
+                                        <div class="panel-heading">
+                                            <strong><a class="text-secondary" href="#">@cmt.User.FirstName @cmt.User.LastName</a></strong> 
+                                            <span class="text-muted"> 
+                                                commented
+                                                @if (cmt.TimeSpan == null) 
+                                                {
+                                                    @cmt.CreatedAt.ToString("d")
+                                                } else 
+                                                {
+                                                    @cmt.TimeSpan 
+                                                }
+                                            </span>
+                                        </div> <!-- End Panel-Heading -->
+                                        <div class="panel-body">
+                                            @cmt.Cmt
+                                        </div> <!-- End Panel-Body -->
+                                    </div> <!-- End Panel -->
+                                </div> <!-- End CMT Box -->
+                                <hr>
                             </div>
                         }
                         <!-- Leave comment -->
