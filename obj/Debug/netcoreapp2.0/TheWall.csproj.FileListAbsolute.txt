@@ -1,0 +1,11 @@
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.csprojAssemblyReference.cache
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.csproj.CoreCompileInputs.cache
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.AssemblyInfoInputs.cache
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.AssemblyInfo.cs
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\bin\Debug\netcoreapp2.0\TheWall.deps.json
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\bin\Debug\netcoreapp2.0\TheWall.runtimeconfig.json
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\bin\Debug\netcoreapp2.0\TheWall.runtimeconfig.dev.json
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\bin\Debug\netcoreapp2.0\TheWall.dll
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\bin\Debug\netcoreapp2.0\TheWall.pdb
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.dll
+C:\Users\angie\Desktop\coding-dojo\c#\ORMS\TheWall\obj\Debug\netcoreapp2.0\TheWall.pdb

@@ -1,0 +1,58 @@
+@model TheWall.Models.User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>The Wall</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="/">The Wall</a>
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+            </ul>
+            <div class="ml-auto">
+                <ul>
+                    <li class="nav-item float-right">
+                        <a class="nav-link text-white float-right" href="/signin">Sign in</a>
+                    </li>
+                </ul>  
+            </div> 
+        </nav>
+        <div class="container mx-auto my-5">
+            <div class="container text-center col-6">
+                <form class="form-group mt-5 d-flex align-items-center flex-column justify-content-center" asp-action="Register" asp-controller="Home" method="post">
+                    <span class="text-danger mt-3" asp-validation-for="FirstName"></span>
+                    <input type="text" class="form-control col-8 mt-3" asp-for="FirstName" placeholder="First Name">
+    
+                    <span class="text-danger mt-3" asp-validation-for="LastName"></span>
+                    <input type="text" class="form-control col-8 mt-3" asp-for="LastName" placeholder="Last Name">
+    
+                    <span class="text-danger mt-3" asp-validation-for="Email"></span>
+                    <input type="text" class="form-control col-8 mt-3" asp-for="Email" placeholder="Email">
+    
+                    <span class="text-danger mt-3" asp-validation-for="Password"></span>
+                    <input type="password" class="form-control col-8 mt-3" asp-for="Password" placeholder="Password">
+    
+                    <span class="text-danger mt-3" asp-validation-for="Confirm"></span>
+                    <input type="password" class="form-control col-8 mt-3" asp-for="Confirm" placeholder="Confirm Password">
+
+                    <span class="text-danger mt-3" asp-validation-for="Description"></span>
+                    <textarea type="text" class="form-control col-8 mt-3" asp-for="Description" placeholder="Describe yourself"></textarea>
+    
+                    <button type="submit" class="btn btn-info mt-5">Sign up</button>
+                </form>
+                <a class="text-info" href="/signin">Already Registered?</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

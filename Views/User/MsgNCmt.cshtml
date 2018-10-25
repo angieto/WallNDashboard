@@ -1,0 +1,57 @@
+@model TheWall.Models.Comment
+
+<div class="container mx-auto mt-5">
+        <!-- Render msg -->
+        @foreach(var msg in @ViewBag.AllMsg)
+        {
+            <div class="container mt-5">
+                <div class="container row mt-5 pr-5">
+                    <p class="d-inline"><a href="#">@msg.User.FirstName @msg.User.LastName</a>  
+                        <p class="d-inline ml-auto">
+                            @if (@msg.TimeSpan == null) 
+                            {
+                                @msg.CreatedAt.ToString("d")
+                            } else 
+                            {
+                                @msg.TimeSpan 
+                            }
+                        </p>
+                    </p>
+                </div>
+        
+                <div class="container row">
+                    <div class="container row mt-2">
+                        <!-- Render comments -->
+                        <textarea class="form-control">@msg.Msg</textarea>
+                        @foreach(var cmt in msg.Comments)
+                        {
+                            <div class="container row mt-3">
+                                <p class="d-inline"><a href="#">@cmt.User.FirstName @cmt.User.LastName</a> 
+                                    <p class="d-inline ml-auto">
+                                        @if (@cmt.TimeSpan == null) 
+                                        {
+                                            @cmt.CreatedAt.ToString("d")
+                                        } else 
+                                        {
+                                            @cmt.TimeSpan 
+                                        }
+                                    </p>
+                                </p>
+                                <div readonly class="container border rounded p-3">@cmt.Cmt</div>
+                            </div>
+                        }
+                        <!-- Leave comment -->
+                        <div class="container mt-5">
+                            <form class="form-group" asp-action="CreateCmt" asp-controller="User"
+                                asp-route-recipientId="@ViewBag.SelectedUser.UserId" method="post">
+                                <textarea class="form-control" asp-for="Cmt"></textarea>
+                                <input type="hidden" asp-for="UserId" value="@ViewBag.UserId">
+                                <input type="hidden" asp-for="MessageId" value="@msg.MessageId">
+                                <button type="submit" class="btn btn-info mt-3 float-right">Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>

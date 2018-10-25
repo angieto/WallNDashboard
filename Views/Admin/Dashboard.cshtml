@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <title>The Wall</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="/">The Wall</a>
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/edit">Profile</a>
+                </li>
+            </ul>
+            <div class="ml-auto">
+                <ul>
+                    <li class="nav-item float-right">
+                        <a class="nav-link text-white float-right" href="/logout">Log off</a>
+                    </li>
+                </ul>  
+            </div> 
+        </nav>
+        <div class="container mx-auto my-5">
+            <div class="container row mb-5">
+                <h3>Manage Users</h3>
+                <a href="/users/new" class="btn btn-info ml-auto">Add new</a>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">User Level</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in @ViewBag.AllUsers)
+                    {
+                        <tr>
+                            <td>@user.UserId</td>
+                            <td>
+                                <a asp-action="UserDetail" asp-controller="Admin" asp-route-id="@user.UserId">
+                                    @user.FirstName @user.LastName
+                                </a>
+                            </td>
+                            <td>@user.Email</td>
+                            <td>@user.CreatedAt.ToString("d")</td>
+                            @if (user.Level == 9) { <td>admin</td> }
+                            else { <td>normal</td> }
+                            <td class="row">
+                                <a asp-action="Edit" asp-controller="Admin" asp-route-id="@user.UserId" class="btn btn-link">Edit</a>
+                                <form asp-action="Remove" asp-controller="Admin" asp-route-id="@user.UserId" method="post">
+                                    <button type="submit" class="btn btn-link">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
