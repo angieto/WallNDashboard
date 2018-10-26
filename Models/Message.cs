@@ -25,6 +25,9 @@ namespace TheWall.Models
         public int RecipientId {get; set;}
         public User Recipient {get; set;}
 
+        // Add MsgLikes
+        public List<MsgLike> MsgLikes {get; set;}
+
         public string TimeSpan {
             get {
                 TimeSpan timeSpan = DateTime.Now.Subtract(this.CreatedAt);

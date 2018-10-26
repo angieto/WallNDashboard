@@ -52,5 +52,8 @@ namespace TheWall.Models
         [InverseProperty("Recipient")]
         public List<Message> ReceivedMessages {get; set;}
 
+        // Add MsgLikes
+        public List<MsgLike> MsgLikes {get; set;}
+
     }
 }
