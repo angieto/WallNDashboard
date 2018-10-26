@@ -34,7 +34,7 @@ namespace TheWall.Controllers
             {
                 int? UserId = HttpContext.Session.GetInt32("UserId");
                 ViewBag.UserId = UserId;
-                List<User> AllUsers = dbContext.Users.Where(user => user.UserId != UserId).OrderBy(user => user.CreatedAt).ToList();
+                List<User> AllUsers = dbContext.Users.OrderBy(user => user.CreatedAt).ToList();
                 ViewBag.AllUsers = AllUsers;
                 return View("Dashboard");
             }
@@ -199,6 +199,20 @@ namespace TheWall.Controllers
                 user.Email = newUser.Email;
                 user.Password = newUser.Password;
                 user.Description = newUser.Description;
+                dbContext.SaveChanges();
+                return RedirectToAction("Detail", new { id = user.UserId });
+            }
+            return View("Profile", user);
+        }
+
+        [HttpPost("/admin/img")]
+        public IActionResult AddAvarta(string AvartaUrl)
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+            if (ModelState.IsValid)
+            {
+                user.AvartaUrl = AvartaUrl;
                 dbContext.SaveChanges();
                 return RedirectToAction("Detail", new { id = user.UserId });
             }

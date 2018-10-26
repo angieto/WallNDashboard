@@ -12,7 +12,9 @@
                     </div>
                     <div class="panel panel-default ml-5">
                         <div class="panel-heading">
-                            <strong><a class="text-secondary" href="#">@msg.User.FirstName @msg.User.LastName</a></strong> 
+                            <strong><a class="text-secondary" asp-action="Detail" asp-controller="User" asp-route-id="@msg.User.UserId">
+                                @msg.User.FirstName @msg.User.LastName
+                            </a></strong> 
                             <span class="text-muted"> 
                                 left a message
                                 @if (@msg.TimeSpan == null) 
@@ -43,7 +45,9 @@
                                     </div>
                                     <div class="panel panel-default ml-5 col-10">
                                         <div class="panel-heading">
-                                            <strong><a class="text-secondary" href="#">@cmt.User.FirstName @cmt.User.LastName</a></strong> 
+                                            <strong><a class="text-secondary" asp-action="Detail" asp-controller="User" asp-route-id="@cmt.User.UserId">
+                                                @cmt.User.FirstName @cmt.User.LastName
+                                            </a></strong> 
                                             <span class="text-muted"> 
                                                 commented
                                                 @if (cmt.TimeSpan == null) 

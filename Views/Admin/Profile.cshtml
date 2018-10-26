@@ -32,15 +32,41 @@
             </div> 
         </nav>
         <div class="container mx-auto my-5">
-            <h3>Edit Profile</h3>
-            <div class="container row">
+            <h3 class="text-info">Edit Profile</h3>
+            <hr>
+            <div class="container my-5 mx-auto row">
                 <!-- Avarta -->
-                <div class="container col-4">
-
+                <div class="col-5 mx-auto">
+                    <div class="container border rounded py-5">
+                        <!-- User's current Img Url -->
+                        <div class="container text-center col-10 mt-3">
+                            @if(@ViewBag.User.AvartaUrl == null)
+                            {
+                                <img class="border rounded" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="250" width="250">
+                            } else {
+                                <img class="border rounded" src="@ViewBag.User.AvartaUrl" height="250" width="250">
+                            }
+                            
+                        </div>
+                        <!-- User's to-be-updated Img Url -->
+                        <div class="col-9 mx-auto">
+                            <form class="form-group mt-5 d-flex align-items-center flex-column justify-content-center">
+                                <input type="file" class="custom-file-input">
+                                <label class="custom-file-label">Choose image file...</label>
+                            </form>
+                            <form class="form-group mt-4 d-flex align-items-center flex-column justify-content-center" asp-controller="Admin" asp-action="AddAvarta" method="post">
+                                <input type="text" asp-for="AvartaUrl" class="form-control" placeholder="Image Url">
+                                <div class="row">
+                                    <button type="submit" class="btn btn-success mt-5 mx-2 d-inline">Update</button>
+                                    <a class="btn btn-danger mt-5 mx-2 d-inline" href="/dashboard">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 <!-- Info -->
-                <div class="container col-8">
-                    <form class="form-group mt-5 d-flex align-items-center flex-column justify-content-center" asp-action="UpdateProfile" asp-controller="Admin" method="post">
+                <div class="col-7">
+                    <form class="form-group d-flex align-items-center flex-column justify-content-center border rounded ml-5 px-3 py-5" asp-action="UpdateProfile" asp-controller="Admin" method="post">
                         <span class="text-danger mt-3" asp-validation-for="FirstName"></span>
                         <input type="text" class="form-control col-8 mt-3" asp-for="FirstName" placeholder="First Name">
         
@@ -58,8 +84,12 @@
 
                         <span class="text-danger mt-3" asp-validation-for="Description"></span>
                         <textarea type="text" class="form-control col-8 mt-3" asp-for="Description" placeholder="Describe yourself"></textarea>
-        
-                        <button type="submit" class="btn btn-secondary mt-5">Update</button>
+                        
+                        <div class="row">
+                            <button type="submit" class="btn btn-success mt-5 mx-2 d-inline">Update</button>
+                            <a class="btn btn-danger mt-5 mx-2 d-inline" href="/dashboard">Cancel</a>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
