@@ -110,7 +110,66 @@ namespace TheWall.Controllers
         [HttpGet("/users/edit")]
         public IActionResult UserProfile()
         {
-            return View("Profile");
+            if (HttpContext.Session.GetInt32("UserId") == null) 
+            {
+                return RedirectToAction("Index", "Home");
+            } 
+            else 
+            {
+                int? UserId = HttpContext.Session.GetInt32("UserId");
+                User SelectedUser = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+                ViewBag.User = SelectedUser;
+                return View("Profile", SelectedUser);
+            }
         }
+
+        [HttpPost("/users/edit/")]
+        public IActionResult UpdateProfile(User newUser)
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+            if (ModelState.IsValid)
+            {
+                user.FirstName = newUser.FirstName;
+                user.LastName = newUser.LastName;
+                user.Email = newUser.Email;
+                user.Password = newUser.Password;
+                user.Description = newUser.Description;
+                dbContext.SaveChanges();
+                return RedirectToAction("Detail", new { id = user.UserId });
+            }
+            return View("Profile", user);
+        }
+
+        [HttpPost("/img")]
+        public IActionResult AddAvarta(string AvartaUrl)
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+            if (ModelState.IsValid)
+            {
+                user.AvartaUrl = AvartaUrl;
+                dbContext.SaveChanges();
+                return RedirectToAction("Detail", new { id = user.UserId });
+            }
+            return View("Profile", user);
+        }
+
+        // [HttpPost("/img")]
+        // public IActionResult UploadImg(IFormFile file)
+        // {
+        //     if (file == null || file.Length == 0) return Content("file not selected");
+            // get Path
+            // string pathRoot = _appEnvironment.WebRootPath; (not working?)
+            // string pathToImg = $"{pathRoot}\User_Files\Images\{file.FielName}";
+            // copy file to target
+            // using (var stream = new FileStreamResult(pathToImg, FileMode.Create))
+            // {
+            //     await file.CopyToAsync(stream);
+            // }
+            // // output
+            // ViewData["FilePath"] = pathToImg;
+            // return View("");
+        // }
     }
 }

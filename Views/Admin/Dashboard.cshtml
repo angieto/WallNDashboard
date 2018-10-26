@@ -10,19 +10,20 @@
 </head>
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rosybrown;">
             <a class="navbar-brand" href="/">The Wall</a>
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/dashboard/admin">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/users/edit">Profile</a>
                 </li>
             </ul>
             <div class="ml-auto">
-                <ul>
+                <ul style="list-style-type: none;">
                     <li class="nav-item float-right">
                         <a class="nav-link text-white float-right" href="/logout">Log off</a>
                     </li>
@@ -31,12 +32,12 @@
         </nav>
         <div class="container mx-auto my-5">
             <div class="container row mb-5">
-                <h3>Manage Users</h3>
+                <h3 class="text-primary"><u>Manage Users</u></h3>
                 <a href="/users/new" class="btn btn-info ml-auto">Add new</a>
             </div>
             <table class="table">
-                <thead class="thead-dark">
-                    <tr>
+                <thead>
+                    <tr class="table-info text-secondary">
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -49,10 +50,10 @@
                     @foreach (var user in @ViewBag.AllUsers)
                     {
                         <tr>
-                            <td>@user.UserId</td>
+                            <td class="text-secondary">@user.UserId</td>
                             <td>
-                                <a asp-action="UserDetail" asp-controller="Admin" asp-route-id="@user.UserId">
-                                    @user.FirstName @user.LastName
+                                <a class="text-info" asp-action="UserDetail" asp-controller="Admin" asp-route-id="@user.UserId">
+                                    <strong>@user.FirstName @user.LastName</strong>
                                 </a>
                             </td>
                             <td>@user.Email</td>
@@ -60,9 +61,9 @@
                             @if (user.Level == 9) { <td>admin</td> }
                             else { <td>normal</td> }
                             <td class="row">
-                                <a asp-action="Edit" asp-controller="Admin" asp-route-id="@user.UserId" class="btn btn-link">Edit</a>
+                                <a asp-action="Edit" asp-controller="Admin" asp-route-id="@user.UserId" class="text-success btn btn-link"><strong>Edit</strong></a>
                                 <form asp-action="Remove" asp-controller="Admin" asp-route-id="@user.UserId" method="post">
-                                    <button type="submit" class="btn btn-link">Remove</button>
+                                    <button type="submit" class="text-danger btn btn-link"><strong>Remove</strong></button>
                                 </form>
                             </td>
                         </tr>

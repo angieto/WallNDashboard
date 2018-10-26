@@ -170,5 +170,39 @@ namespace TheWall.Controllers
             dbContext.SaveChanges();
             return RedirectToAction("Detail", new { id = recipientId });
         }
+
+        [HttpGet("/admin/edit")]
+        public IActionResult AdminProfile()
+        {
+            if (HttpContext.Session.GetInt32("UserId") == null) 
+            {
+                return RedirectToAction("Index", "Home");
+            } 
+            else 
+            {
+                int? UserId = HttpContext.Session.GetInt32("UserId");
+                User SelectedUser = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+                ViewBag.User = SelectedUser;
+                return View("Profile", SelectedUser);
+            }
+        }
+
+        [HttpPost("/admin/edit/")]
+        public IActionResult UpdateProfile(User newUser)
+        {
+            int? UserId = HttpContext.Session.GetInt32("UserId");
+            User user = dbContext.Users.FirstOrDefault(u => u.UserId == UserId);
+            if (ModelState.IsValid)
+            {
+                user.FirstName = newUser.FirstName;
+                user.LastName = newUser.LastName;
+                user.Email = newUser.Email;
+                user.Password = newUser.Password;
+                user.Description = newUser.Description;
+                dbContext.SaveChanges();
+                return RedirectToAction("Detail", new { id = user.UserId });
+            }
+            return View("Profile", user);
+        }
     }
 }

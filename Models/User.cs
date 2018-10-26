@@ -33,6 +33,8 @@ namespace TheWall.Models
 
         public int Level {get; set;} // 1: normal vs. 9: admin
 
+        public string AvartaUrl {get; set;} 
+
         public DateTime CreatedAt {get; set;} = DateTime.Now;
         public DateTime UpdatedAt {get; set;} = DateTime.Now;
 
@@ -43,7 +45,6 @@ namespace TheWall.Models
         public string Confirm {get; set;}
 
         public List<Comment> Comments {get; set;}
-        
 
         [InverseProperty("User")]
         public List<Message> CreatedMessages {get; set;}

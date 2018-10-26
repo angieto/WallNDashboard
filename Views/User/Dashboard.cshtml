@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rosybrown;">
             <a class="navbar-brand" href="/">The Wall</a>
             <!-- Links -->
             <ul class="navbar-nav">
@@ -22,7 +23,7 @@
                 </li>
             </ul>
             <div class="ml-auto">
-                <ul>
+                <ul style="list-style-type: none;">
                     <li class="nav-item float-right">
                         <a class="nav-link text-white float-right" href="/logout">Log off</a>
                     </li>
@@ -31,8 +32,8 @@
         </nav>
         <div class="container mx-auto my-5">
             <table class="table">
-                <thead class="thead-dark">
-                    <tr>
+                <thead>
+                    <tr class="table-info text-secondary">
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -44,10 +45,10 @@
                     @foreach (var user in @ViewBag.AllUsers)
                     {
                         <tr>
-                            <td>@user.UserId</td>
+                            <td class="text-secondary">@user.UserId</td>
                             <td>
-                                <a asp-action="Detail" asp-controller="User" asp-route-id="@user.UserId">
-                                    @user.FirstName @user.LastName
+                                <a class="text-info" asp-action="Detail" asp-controller="User" asp-route-id="@user.UserId">
+                                    <strong>@user.FirstName @user.LastName</strong>
                                 </a>
                             </td>
                             <td>@user.Email</td>

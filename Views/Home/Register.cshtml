@@ -11,7 +11,8 @@
 </head>
 <body>
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- NavBar -->
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rosybrown;">
             <a class="navbar-brand" href="/">The Wall</a>
             <!-- Links -->
             <ul class="navbar-nav">
@@ -20,7 +21,7 @@
                 </li>
             </ul>
             <div class="ml-auto">
-                <ul>
+                <ul style="list-style-type: none;">
                     <li class="nav-item float-right">
                         <a class="nav-link text-white float-right" href="/signin">Sign in</a>
                     </li>
@@ -28,7 +29,7 @@
             </div> 
         </nav>
         <div class="container mx-auto my-5">
-            <div class="container text-center col-6">
+            <div class="container text-center col-6 border rounded pb-5">
                 <form class="form-group mt-5 d-flex align-items-center flex-column justify-content-center" asp-action="Register" asp-controller="Home" method="post">
                     <span class="text-danger mt-3" asp-validation-for="FirstName"></span>
                     <input type="text" class="form-control col-8 mt-3" asp-for="FirstName" placeholder="First Name">
@@ -48,9 +49,9 @@
                     <span class="text-danger mt-3" asp-validation-for="Description"></span>
                     <textarea type="text" class="form-control col-8 mt-3" asp-for="Description" placeholder="Describe yourself"></textarea>
     
-                    <button type="submit" class="btn btn-info mt-5">Sign up</button>
+                    <button type="submit" class="btn btn-secondary mt-5">Sign up</button>
                 </form>
-                <a class="text-info" href="/signin">Already Registered?</a>
+                <a class="text-secondary" href="/signin">Already Registered?</a>
             </div>
         </div>
     </div>

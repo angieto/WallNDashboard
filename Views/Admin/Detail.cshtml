@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="container-fluid mb-5">
-        <!-- NavBar -->
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:rosybrown;">
             <a class="navbar-brand" href="/">The Wall</a>
             <!-- Links -->
             <ul class="navbar-nav">
@@ -23,7 +23,7 @@
                 </li>
             </ul>
             <div class="ml-auto">
-                <ul>
+                <ul style="list-style-type: none;">
                     <li class="nav-item float-right">
                         <a class="nav-link text-white float-right" href="/logout">Log off</a>
                     </li>
@@ -32,15 +32,25 @@
         </nav>
 
         <!-- User Info -->
-        <div class="container mx-auto mt-5">
-            <h3 class="mt-3">@ViewBag.SelectedUser.FirstName @ViewBag.SelectedUser.LastName</h3>
-            <hr>
-            <p><h6 class="mt-3 d-inline">Register at:</h6> @ViewBag.SelectedUser.CreatedAt</p>
-            <p><h6 class="mt-3 d-inline">Email address:</h6> @ViewBag.SelectedUser.Email</p>
-            @if (@ViewBag.SelectedUser.Description != "") 
-            {
-                <p><h6 class="mt-3 d-inline">Description:</h6> @ViewBag.SelectedUser.Description</p>
-            }
+        <!-- User Info -->
+        <div class="container row mx-auto mt-5">
+            <div class="container col-1 d-flex align-items-center">
+                @if(@ViewBag.SelectedUser.AvartaUrl == null)
+                {
+                    <img class="rounded-circle" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="155" width="155">
+                }
+                <img class="border rounded-circle" src="@ViewBag.SelectedUser.AvartaUrl" height="155" width="155">
+            </div>
+            <div class="container col-6">
+                <h3 class="mt-3">@ViewBag.SelectedUser.FirstName @ViewBag.SelectedUser.LastName</h3>
+                <hr>
+                <p><h6 class="mt-3 d-inline">Register at:</h6> @ViewBag.SelectedUser.CreatedAt</p>
+                <p><h6 class="mt-3 d-inline">Email address:</h6> @ViewBag.SelectedUser.Email</p>
+                @if (@ViewBag.SelectedUser.Description != "") 
+                {
+                    <p><h6 class="mt-3 d-inline">Description:</h6> @ViewBag.SelectedUser.Description</p>
+                }
+            </div>
         </div>
 
         <!-- MSG BOX -->
